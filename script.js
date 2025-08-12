@@ -1,107 +1,118 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const sidebar = document.getElementById("sidebar");
-  const toggleBtn = document.getElementById("sidebarToggle");
-  const navLinks = sidebar.querySelectorAll(".nav-link");
-  const themeToggle = document.getElementById("themeToggle");
-  const backToTopBtn = document.getElementById("backToTop");
-  const header = document.querySelector("header.navbar");
-
-  // Initialize theme from saved preference or default to light or system preference
-  const savedTheme = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  if (savedTheme) {
-    setTheme(savedTheme);
-  } else {
-    setTheme(prefersDark ? "dark" : "light");
-  }
-
-  // Sync toggle UI state with current theme
-  function updateToggleState(theme) {
-    themeToggle.checked = (theme === "dark");
-  }
-
-  // Sidebar toggle handler (collapse on desktop, slide on mobile)
-  toggleBtn.addEventListener("click", () => {
-    if (window.innerWidth > 768) {
-      sidebar.classList.toggle("collapsed");
-    } else {
-      sidebar.classList.toggle("show");
-    }
-  });
-
-  // Close mobile sidebar if clicking outside
-  document.addEventListener("click", (e) => {
-    if (window.innerWidth <= 768) {
-      if (!sidebar.contains(e.target) && e.target !== toggleBtn) {
-        sidebar.classList.remove("show");
-      }
-    }
-  });
-
-  // Highlight active menu item on click
-  navLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      navLinks.forEach(l => l.classList.remove("active"));
-      link.classList.add("active");
-      if (window.innerWidth <= 768) {
-        sidebar.classList.remove("show");
-      }
+document.addEventListener('DOMContentLoaded', function() {
+    // Sidebar toggle functionality
+    const sidebar = document.querySelector('.sidebar');
+    const toggleSidebar = document.querySelector('.toggle-sidebar');
+    
+    toggleSidebar.addEventListener('click', function() {
+        sidebar.classList.toggle('collapsed');
+        sidebar.classList.toggle('expanded');
     });
-  });
 
-  // Theme toggle switch handler
-  themeToggle.addEventListener("change", () => {
-    if (themeToggle.checked) {
-      setTheme("dark");
-    } else {
-      setTheme("light");
+    // Theme switcher
+    const themeToggle = document.querySelector('.theme-toggle');
+    const body = document.body;
+    
+    // Check for saved theme preference or use preferred color scheme
+    const savedTheme = localStorage.getItem('theme') || 
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    
+    if (savedTheme === 'dark') {
+        body.setAttribute('data-theme', 'dark');
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
     }
-  });
+    
+    themeToggle.addEventListener('click', function() {
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.setAttribute('data-theme', 'light');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            localStorage.setItem('theme', 'light');
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            localStorage.setItem('theme', 'dark');
+        }
+    });
 
-  // Set theme, update toggle and save preference
-  function setTheme(theme) {
-    if (theme === "dark") {
-      document.documentElement.setAttribute("data-theme", "dark");
-    } else {
-      document.documentElement.setAttribute("data-theme", "light");
+    // Sticky header on scroll
+    const header = document.querySelector('.header');
+    const content = document.querySelector('.content');
+    
+    function updateHeader() {
+        if (window.innerWidth > 768) {
+            // Desktop behavior
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        } else {
+            // Mobile behavior - always sticky
+            header.classList.add('scrolled');
+        }
     }
-    localStorage.setItem("theme", theme);
-    updateToggleState(theme);
-  }
 
-  // Sticky header style and back-to-top button visibility on scroll
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 60) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
-    }
+    // Initial call
+    updateHeader();
 
+    // Update on scroll and resize
+    window.addEventListener('scroll', updateHeader);
+    window.addEventListener('resize', updateHeader);
+
+    // Mobile menu toggle - CORRECTED VERSION
+    const mobileMenuToggle = document.createElement('button');
+    mobileMenuToggle.className = 'mobile-menu-toggle';
+    mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    document.querySelector('.header-right').prepend(mobileMenuToggle);
+    
+    mobileMenuToggle.addEventListener('click', function() {
+        sidebar.classList.toggle('expanded');
+    });
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', function(event) {
+        const isClickInsideSidebar = sidebar.contains(event.target);
+        const isClickOnMobileToggle = mobileMenuToggle.contains(event.target);
+        
+        if (!isClickInsideSidebar && !isClickOnMobileToggle && window.innerWidth < 992) {
+            sidebar.classList.remove('expanded');
+        }
+    });
+
+    // Active menu item
+    const menuItems = document.querySelectorAll('.sidebar-nav li');
+    
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            menuItems.forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Close sidebar on mobile after selection
+            if (window.innerWidth < 992) {
+                sidebar.classList.remove('expanded');
+            }
+        });
+    });
+});
+const backToTopButton = document.querySelector('.back-to-top');
+
+function toggleBackToTop() {
     if (window.scrollY > 300) {
-      backToTopBtn.classList.add("show");
+        backToTopButton.classList.add('visible');
     } else {
-      backToTopBtn.classList.remove("show");
+        backToTopButton.classList.remove('visible');
     }
-  });
+}
 
-  // Back to top smooth scroll on click
-  backToTopBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+// Initial check
+toggleBackToTop();
 
-  // Accessibility: toggle sidebar with keyboard (Enter/Space)
-  toggleBtn.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      toggleBtn.click();
-    }
-  });
+// Update on scroll
+window.addEventListener('scroll', toggleBackToTop);
 
-  // Accessibility: allow backToTop button keyboard activation
-  backToTopBtn.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      backToTopBtn.click();
-    }
-  });
+// Smooth scroll to top
+backToTopButton.addEventListener('click', function() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 });
