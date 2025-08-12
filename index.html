@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard UI</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar" aria-label="Sidebar Navigation">
+    <ul class="nav flex-column px-3">
+      <li class="nav-item mb-1">
+        <a href="#" class="nav-link active" aria-current="page" tabindex="0">
+          <i class="bi bi-house-door-fill"></i>
+          <span class="label">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item mb-1">
+        <a href="#" class="nav-link" tabindex="0">
+          <i class="bi bi-people-fill"></i>
+          <span class="label">Users</span>
+        </a>
+      </li>
+      <li class="nav-item mb-1">
+        <a href="#" class="nav-link" tabindex="0">
+          <i class="bi bi-currency-dollar"></i>
+          <span class="label">Sales</span>
+        </a>
+      </li>
+      <li class="nav-item mb-1">
+        <a href="#" class="nav-link" tabindex="0">
+          <i class="bi bi-bar-chart-fill"></i>
+          <span class="label">Reports</span>
+        </a>
+      </li>
+      <li class="nav-item mb-1">
+        <a href="#" class="nav-link" tabindex="0">
+          <i class="bi bi-gear-fill"></i>
+          <span class="label">Settings</span>
+        </a>
+      </li>
+    </ul>
+    <button id="sidebarToggle" aria-label="Toggle Sidebar" title="Toggle Sidebar" tabindex="0" type="button">☰</button>
+  </nav>
+
+  <!-- Top navbar -->
+  <header class="navbar" role="banner">
+    <div class="search-bar flex-grow-1 me-3">
+      <input type="search" aria-label="Search" placeholder="Search..." />
+    </div>
+
+    <!-- Theme toggle switch -->
+    <label class="theme-switch" for="themeToggle" aria-label="Toggle Light/Dark Theme" title="Toggle Light/Dark Theme">
+      <input type="checkbox" id="themeToggle" />
+      <span class="slider"></span>
+    </label>
+
+    <div class="profile d-flex align-items-center ms-3" tabindex="0" aria-label="User Profile">
+      <img src="https://i.pravatar.cc/36" alt="User Avatar" />
+      <span class="d-none d-md-inline ms-2">Tarun S</span>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <div class="content-wrapper">
+    <main class="container pt-4" role="main" tabindex="0">
+      <section class="cards-grid" aria-label="Dashboard statistics">
+        <article class="card" tabindex="0" aria-label="Users Online">
+          <div class="card-header">
+            <div>Users Online</div>
+            <i class="bi bi-people-fill card-icon" aria-hidden="true"></i>
+          </div>
+          <div class="card-value">1,245</div>
+          <div class="chart-placeholder" aria-hidden="true"></div>
+        </article>
+        <article class="card" tabindex="0" aria-label="Sales Today">
+          <div class="card-header">
+            <div>Sales Today</div>
+            <i class="bi bi-currency-dollar card-icon" aria-hidden="true"></i>
+          </div>
+          <div class="card-value">$8,932</div>
+          <div class="chart-placeholder" aria-hidden="true"></div>
+        </article>
+        <article class="card" tabindex="0" aria-label="New Orders">
+          <div class="card-header">
+            <div>New Orders</div>
+            <i class="bi bi-bag-fill card-icon" aria-hidden="true"></i>
+          </div>
+          <div class="card-value">356</div>
+          <div class="chart-placeholder" aria-hidden="true"></div>
+        </article>
+        <article class="card" tabindex="0" aria-label="Visitors">
+          <div class="card-header">
+            <div>Visitors</div>
+            <i class="bi bi-eye-fill card-icon" aria-hidden="true"></i>
+          </div>
+          <div class="card-value">12,987</div>
+          <div class="chart-placeholder" aria-hidden="true"></div>
+        </article>
+        <article class="card" tabindex="0" aria-label="Open Tickets">
+          <div class="card-header">
+            <div>Open Tickets</div>
+            <i class="bi bi-ticket-fill card-icon" aria-hidden="true"></i>
+          </div>
+          <div class="card-value">78</div>
+          <div class="chart-placeholder" aria-hidden="true"></div>
+        </article>
+        <article class="card" tabindex="0" aria-label="Feedback">
+          <div class="card-header">
+            <div>Feedback</div>
+            <i class="bi bi-chat-dots-fill card-icon" aria-hidden="true"></i>
+          </div>
+          <div class="card-value">1,024</div>
+          <div class="chart-placeholder" aria-hidden="true"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <!-- Back to Top button -->
+  <button id="backToTop" aria-label="Back to top" title="Back to Top" type="button">↑</button>
+
+  <!-- Bootstrap JS Bundle (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="script.js"></script>
+</body>
+</html>
