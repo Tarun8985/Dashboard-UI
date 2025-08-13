@@ -1,175 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Dashboard UI with Calendar</title>
+  
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+  
+  <!-- Custom CSS -->
+  <link href="style.css" rel="stylesheet" />
 </head>
-<body>
-    <div class="dashboard">
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <h2>Dashboard</h2>
-                <button class="toggle-sidebar">
-                    <i class="fas fa-bars"></i>
-                </button>
+<body data-theme="light">
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header d-flex align-items-center justify-content-between px-3 py-2">
+        
+        <button class="toggle-sidebar btn btn-link p-0" aria-label="Toggle sidebar">
+          <i class="bi bi-list fs-4"></i>
+        </button>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="active">
+            <a href="#" class="sidebar-nav-link">
+              <i class="bi bi-house-door-fill"></i><span>Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-nav-link">
+              <i class="bi bi-people-fill"></i><span>Users</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-nav-link">
+              <i class="bi bi-currency-dollar"></i><span>Sales</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-nav-link">
+              <i class="bi bi-bar-chart-fill"></i><span>Analytics</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-nav-link">
+              <i class="bi bi-gear-fill"></i><span>Settings</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar-nav-link" id="calendarNav">
+              <i class="bi bi-calendar-event"></i><span>Calendar</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="header d-flex align-items-center justify-content-between px-4">
+        <form class="search-bar d-flex align-items-center" role="search">
+          <input type="search" placeholder="Search..." aria-label="Search" class="form-control" />
+          <button type="submit" class="btn btn-link p-0 ms-2" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+        <div class="header-right d-flex align-items-center gap-3">
+          <button class="theme-toggle btn btn-link p-0" aria-label="Toggle theme">
+            <i class="bi bi-moon-fill fs-4"></i>
+          </button>
+          <div class="profile d-flex align-items-center gap-2 clickable" tabindex="0" aria-label="User profile">
+            <img src="https://i.pravatar.cc/40" alt="User Avatar" class="rounded-circle" width="40" height="40" />
+            <span class="d-none d-md-inline">Tarun S </span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Cards Section -->
+      <section class="content cards-section px-4 py-3">
+        <div class="cards-grid">
+          <article class="card">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-people-fill text-primary fs-3"></i>
+              <h3 class="ms-3 mb-0">Users Online</h3>
             </div>
-            <nav class="sidebar-nav">
-                <ul>
-                    <li class="active">
-                        <a href="#">
-                            <i class="fas fa-home"></i>
-                            <span>Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Analytics</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-users"></i>
-                            <span>Users</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span>Products</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-cog"></i>
-                            <span>Settings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-question-circle"></i>
-                            <span>Help</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Top Navigation Bar -->
-            <header class="header">
-                <div class="search-bar">
-                    <input type="text" placeholder="Search...">
-                    <button><i class="fas fa-search"></i></button>
-                </div>
-                <div class="header-right">
-                    <button class="theme-toggle">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    <div class="profile">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile">
-                        <span>Tarun S</span>
-                    </div>
-                </div>
-            </header>
-
-            <!-- Cards Section -->
-            <div class="content">
-                
-                <div class="cards-grid">
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fas fa-users"></i>
-                            <h3>Users Online</h3>
-                        </div>
-                        <div class="card-body">
-                            <h2>1,245</h2>
-                            <div class="chart-placeholder"></div>
-                        </div>
-                        <div class="card-footer">
-                            <span>+12% from yesterday</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fas fa-shopping-cart"></i>
-                            <h3>Sales Today</h3>
-                        </div>
-                        <div class="card-body">
-                            <h2>$8,456</h2>
-                            <div class="chart-placeholder"></div>
-                        </div>
-                        <div class="card-footer">
-                            <span>+5% from yesterday</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fas fa-chart-pie"></i>
-                            <h3>Conversion Rate</h3>
-                        </div>
-                        <div class="card-body">
-                            <h2>3.2%</h2>
-                            <div class="chart-placeholder"></div>
-                        </div>
-                        <div class="card-footer">
-                            <span>+0.8% from last week</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fas fa-envelope"></i>
-                            <h3>New Messages</h3>
-                        </div>
-                        <div class="card-body">
-                            <h2>42</h2>
-                            <div class="chart-placeholder"></div>
-                        </div>
-                        <div class="card-footer">
-                            <span>+3 unread</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fas fa-server"></i>
-                            <h3>Server Load</h3>
-                        </div>
-                        <div class="card-body">
-                            <h2>68%</h2>
-                            <div class="chart-placeholder"></div>
-                        </div>
-                        <div class="card-footer">
-                            <span>Optimal</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fas fa-tasks"></i>
-                            <h3>Tasks Completed</h3>
-                        </div>
-                        <div class="card-body">
-                            <h2>24/30</h2>
-                            <div class="chart-placeholder"></div>
-                        </div>
-                        <div class="card-footer">
-                            <span>80% done</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="card-body">
+              <h2>1,245</h2>
+              <p class="mb-0 text-success">+12% from yesterday</p>
             </div>
-        </main>
-    </div>
+          </article>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+          <article class="card">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-cart-check-fill text-success fs-3"></i>
+              <h3 class="ms-3 mb-0">Sales Today</h3>
+            </div>
+            <div class="card-body">
+              <h2>$8,456</h2>
+              <p class="mb-0 text-success">+5% from yesterday</p>
+            </div>
+          </article>
 
-    <script src="script.js"></script>
+          <article class="card">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-percent text-info fs-3"></i>
+              <h3 class="ms-3 mb-0">Conversion Rate</h3>
+            </div>
+            <div class="card-body">
+              <h2>3.2%</h2>
+              <p class="mb-0 text-success">+0.8% last week</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-envelope-fill text-warning fs-3"></i>
+              <h3 class="ms-3 mb-0">New Messages</h3>
+            </div>
+            <div class="card-body">
+              <h2>42</h2>
+              <p class="mb-0 text-warning">+3 unread</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-server text-danger fs-3"></i>
+              <h3 class="ms-3 mb-0">Server Load</h3>
+            </div>
+            <div class="card-body">
+              <h2>68%</h2>
+              <p class="mb-0 text-success">Optimal</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-header d-flex align-items-center">
+              <i class="bi bi-check-circle-fill text-secondary fs-3"></i>
+              <h3 class="ms-3 mb-0">Tasks Completed</h3>
+            </div>
+            <div class="card-body">
+              <h2>24/30</h2>
+              <p class="mb-0 text-success">80% done</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Calendar Section (Hidden by Default) -->
+      <section class="calendar-section d-none" id="calendarSection">
+        <div class="calendar-controls d-flex justify-content-between align-items-center mb-3">
+          <button class="btn btn-sm btn-outline-primary" id="prevMonthBtn" aria-label="Previous month">Prev</button>
+          <h4 id="calendarMonthYear" class="m-0"></h4>
+          <button class="btn btn-sm btn-outline-primary" id="nextMonthBtn" aria-label="Next month">Next</button>
+        </div>
+        <div class="calendar-grid" role="grid" aria-label="Calendar days">
+          <div class="calendar-day-label" role="columnheader">Sun</div>
+          <div class="calendar-day-label" role="columnheader">Mon</div>
+          <div class="calendar-day-label" role="columnheader">Tue</div>
+          <div class="calendar-day-label" role="columnheader">Wed</div>
+          <div class="calendar-day-label" role="columnheader">Thu</div>
+          <div class="calendar-day-label" role="columnheader">Fri</div>
+          <div class="calendar-day-label" role="columnheader">Sat</div>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary mt-2" id="todayBtn" aria-label="Jump to today">Today</button>
+      </section>
+
+      <!-- Back to Top Button -->
+      <button class="back-to-top" aria-label="Back to top" title="Back to top">
+        <i class="bi bi-arrow-up"></i>
+      </button>
+
+      <!-- Event Modal -->
+      <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content" data-theme="">
+            <div class="modal-header">
+              <h5 class="modal-title" id="eventModalLabel">Add/Edit Event</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="eventForm">
+                <div class="mb-3">
+                  <label for="eventDate" class="form-label">Date</label>
+                  <input type="text" id="eventDate" class="form-control" readonly />
+                </div>
+                <div class="mb-3">
+                  <label for="eventTitle" class="form-label">Event Title</label>
+                  <input type="text" id="eventTitle" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                  <label for="eventColor" class="form-label">Tag Color</label>
+                  <select id="eventColor" class="form-select">
+                    <option value="primary" selected>Blue</option>
+                    <option value="success">Green</option>
+                    <option value="danger">Red</option>
+                    <option value="warning">Yellow</option>
+                    <option value="info">Cyan</option>
+                    <option value="secondary">Gray</option>
+                  </select>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <button type="button" id="deleteEventBtn" class="btn btn-danger me-2 d-none">Delete</button>
+                  <button type="submit" class="btn btn-primary">Save Event</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="script.js"></script>
 </body>
 </html>
