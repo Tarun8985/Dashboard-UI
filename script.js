@@ -490,7 +490,7 @@ renderCalendar(currentDate);
     notifList.children[focusedIndex].focus();
   }
 
-  // Event listeners for drawer control and interaction
+  
   notifBtn.addEventListener('click', toggleDrawer);
   notifOverlay.addEventListener('click', closeDrawer);
   closeNotifBtn.addEventListener('click', closeDrawer);
@@ -498,7 +498,7 @@ renderCalendar(currentDate);
     markAllAsRead();
   });
 
-  // Clicking a notification marks it read in UI state and updates styles
+
   notifList.addEventListener('click', (e) => {
     const item = e.target.closest('.notif-item');
     if (!item) return;
@@ -510,6 +510,5 @@ renderCalendar(currentDate);
     }
   });
 
-  // Initial render of notifications and badge
   renderNotifications();
 })();

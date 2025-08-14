@@ -523,9 +523,10 @@ opacity: 0.8;
 .event-dot.info { color: #0dcaf0; }
 .event-dot.secondary { color: #6c757d; }
 
+
+
 @media (max-width: 768px) {
-/* Fixed mobile header height */
-.header {
+  .header {
 position: fixed;
 top: 0;
 left: 0;
@@ -542,6 +543,8 @@ flex-wrap: wrap;
 .main-content {
 padding-top: 130px; /* adjust this to your actual header + searchbar height */
 }
+/* Fixed mobile header height */
+
 
 /* Reset margin/padding on inner content sections */
 .calendar-section,
@@ -891,6 +894,14 @@ z-index: 2050 !important;
     padding: 1rem 0.75rem 2rem;
   }
 }
+@media (max-width: 768px) {
+  .header {
+    padding-top: 1px; /* or more */
+    padding-bottom: 15px;
+  }
+}
+
+
 
 /* Tablet */
 @media (min-width: 577px) and (max-width: 991px) {
